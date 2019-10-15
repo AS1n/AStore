@@ -239,4 +239,4 @@
 ### 3. Диаграмма последовательности
 Диаграмма последовательности основных вариантов использования представлена ниже:
 
-![Sequence Diagram](./Sequence/)
+![Sequence Diagram](./Sequence/SequenceDiagram.png)

@@ -5,5 +5,5 @@ AStore - web приложение, которое позволяет польз�
 # Содержание
 1. [Документация](https://github.com/AS1n/AStore/blob/master/Documentation) <br>
   1.1 [SRS](https://github.com/AS1n/AStore/blob/master/Documentation/SRS/SRS.md) <br>
-  1.2 [Diagrams](https://github.com/AS1n/AStore/blob/master/Documentation/Diagrams/Diagrams.md) <br>
+  1.2 [Диаграммы](https://github.com/AS1n/AStore/blob/master/Documentation/Diagrams/Diagrams.md) <br>
   

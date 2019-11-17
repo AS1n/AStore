@@ -53,3 +53,34 @@ CREATE TABLE `AStore`.`wallet`
       ON DELETE CASCADE
       ON UPDATE NO ACTION
 );
+
+CREATE TABLE `AStore`.`category`
+(
+  `id`   INT(11)     NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `AStore`.`product`
+(
+  `id`          INT(11)        NOT NULL AUTO_INCREMENT,
+  `category_id` INT(11)        NOT NULL,
+  `wallet_id`   INT(11)        NOT NULL,
+  `name`        VARCHAR(45)    NOT NULL,
+  `description` TEXT           NOT NULL,
+  `img_src`     VARCHAR(45)    NOT NULL,
+  `cost`        DECIMAL(11, 5) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `category_id_product_fk_idx` (`category_id` ASC) VISIBLE,
+  INDEX `wallet_id_product_fk_idx` (`wallet_id` ASC) VISIBLE,
+  CONSTRAINT `category_id_product_fk`
+    FOREIGN KEY (`category_id`)
+      REFERENCES `AStore`.`category` (`id`)
+      ON DELETE CASCADE
+      ON UPDATE NO ACTION,
+  CONSTRAINT `wallet_id_product_fk`
+    FOREIGN KEY (`wallet_id`)
+      REFERENCES `AStore`.`wallet` (`id`)
+      ON DELETE CASCADE
+      ON UPDATE CASCADE
+);

@@ -79,14 +79,8 @@ public class User {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(userInfo, user.userInfo) &&
-                Objects.equals(role, user.role);
+        if (o == null || getClass() != o.getClass()) return false;
+        return Objects.equals(id, ((User) o).id);
     }
 
     @Override

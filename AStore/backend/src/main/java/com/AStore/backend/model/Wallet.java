@@ -81,14 +81,8 @@ public class Wallet {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Wallet)) return false;
-        Wallet wallet = (Wallet) o;
-        return id == wallet.id &&
-                Double.compare(wallet.value, value) == 0 &&
-                Objects.equals(user, wallet.user) &&
-                Objects.equals(name, wallet.name) &&
-                Objects.equals(description, wallet.description);
+        if (o == null || getClass() != o.getClass()) return false;
+        return Objects.equals(id, ((Wallet) o).id);
     }
 
     @Override

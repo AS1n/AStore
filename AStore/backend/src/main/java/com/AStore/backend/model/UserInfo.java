@@ -14,7 +14,6 @@ public class UserInfo {
     private Long id;
     @Column(name = "name")
     private String name;
-    @Basic
     @Column(name = "dateofbirth")
     private Date dateOfBirth;
     @OneToOne
@@ -61,13 +60,8 @@ public class UserInfo {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof UserInfo)) return false;
-        UserInfo userInfo = (UserInfo) o;
-        return Objects.equals(id, userInfo.id) &&
-                Objects.equals(name, userInfo.name) &&
-                Objects.equals(dateOfBirth, userInfo.dateOfBirth) &&
-                Objects.equals(user, userInfo.user);
+        if (o == null || getClass() != o.getClass()) return false;
+        return Objects.equals(id, ((UserInfo) o).id);
     }
 
     @Override

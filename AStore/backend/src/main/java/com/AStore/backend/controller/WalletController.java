@@ -21,8 +21,9 @@ public class WalletController {
         this.walletService = walletService;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Wallet> getWalletById(@PathVariable(name = "id") Long id) {
+    @RequestMapping(value = "/{id}")
+    public ResponseEntity<Wallet> getWalletById(
+            @PathVariable(name = "id") Long id) {
         Optional<Wallet> wallet = walletService.getWalletById(id);
         if (wallet.isPresent()) {
             return ResponseEntity.ok(wallet.get());
@@ -31,14 +32,15 @@ public class WalletController {
         }
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public Iterable<Wallet> getWalletsByUserId(@RequestParam(name = "user_id", required = false) Long id) {
+    @RequestMapping(value = "/all")
+    public Iterable<Wallet> getWalletsByUserId(
+            @RequestParam(name = "user_id", required = false) Long id) {
         if (id == null)
             return walletService.getAllWallets();
         return walletService.getWalletsByUserId(id);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping
     public Iterable<Wallet> getWalletsPageByUserId(
             @RequestParam(name = "page") Integer pageNumber,
             @RequestParam(name = "size") Integer size,
@@ -47,11 +49,11 @@ public class WalletController {
         return page.getContent();
     }
 
-    @RequestMapping(value = "/total-pages", method = RequestMethod.GET)
+    @RequestMapping(value = "/total-pages")
     public Integer getTotalPages(
             @RequestParam(name = "size") Integer size,
             @RequestParam(name = "user_id", required = false) Long user_id) {
-        Page page = walletService.getPage(1, size,user_id);
+        Page page = walletService.getPage(1, size, user_id);
         return page.getTotalPages();
     }
 

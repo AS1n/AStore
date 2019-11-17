@@ -20,33 +20,33 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping
     public Iterable<Product> getPage(
             @RequestParam(name = "page") Integer pageNumber,
             @RequestParam(name = "size") Integer size,
             @RequestParam(name = "category_id", required = false) Long category_id,
             @RequestParam(name = "manager_id", required = false) Long manager_id) {
         Page page;
-        if(category_id==null && manager_id!=null)
+        if (category_id == null && manager_id != null)
             page = productService.getOwnPage(pageNumber, size, manager_id);
         else page = productService.getPage(pageNumber, size, category_id);
         return page.getContent();
     }
 
-    @RequestMapping(value = "/total-pages", method = RequestMethod.GET)
+    @RequestMapping(value = "/total-pages")
     public Integer getTotalPages(
             @RequestParam(name = "size") Integer size,
             @RequestParam(name = "category_id", required = false) Long category_id,
             @RequestParam(name = "manager_id", required = false) Long manager_id) {
         Page page;
-        if(manager_id!=null && category_id==null)
-            page = productService.getOwnPage(1,size,manager_id);
-        else page = productService.getPage(1, size,category_id);
+        if (manager_id != null && category_id == null)
+            page = productService.getOwnPage(1, size, manager_id);
+        else page = productService.getPage(1, size, category_id);
 
         return page.getTotalPages();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}")
     public ResponseEntity<Product> getProductById(
             @PathVariable(name = "id") Long id) {
         Optional<Product> product = productService.getProductById(id);

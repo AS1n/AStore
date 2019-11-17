@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product saveProduct(Product product) {
-        if(product.getId()==null && repository.findProductByName(product.getName()).isPresent())
+        if (product.getId() == null && repository.findProductByName(product.getName()).isPresent())
             return null;
         return repository.save(product);
     }
@@ -41,15 +41,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Page<Product> getPage(Integer page, Integer size, Long category_id) {
-        Pageable pageable = new PageRequest(page-1, size, new Sort(Sort.Direction.ASC, "id"));
-        if(category_id==null)
+        Pageable pageable = new PageRequest(page - 1, size, new Sort(Sort.Direction.ASC, "id"));
+        if (category_id == null)
             return repository.findAll(pageable);
         return repository.findProductsByCategoryId(pageable, category_id);
     }
 
     @Override
     public Page<Product> getOwnPage(Integer page, Integer size, Long manager_id) {
-        Pageable pageable = new PageRequest(page-1, size, new Sort(Sort.Direction.ASC, "id"));
+        Pageable pageable = new PageRequest(page - 1, size, new Sort(Sort.Direction.ASC, "id"));
         return repository.findProductsByWalletUserId(pageable, manager_id);
     }
 

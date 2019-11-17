@@ -15,8 +15,7 @@ import java.util.List;
 @Repository
 public interface WalletRepository extends
         CrudRepository<Wallet, Long>,
-        PagingAndSortingRepository<Wallet, Long>
-{
+        PagingAndSortingRepository<Wallet, Long> {
     List<Wallet> findWalletsByUserId(Long id);
     Page<Wallet> findWalletsByUserId(Pageable pageable, Long id);
 

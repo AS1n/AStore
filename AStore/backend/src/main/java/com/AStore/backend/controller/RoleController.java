@@ -19,8 +19,9 @@ public class RoleController {
         this.roleService = roleService;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Role> getRoleById(@PathVariable(name = "id") Long id) {
+    @RequestMapping(value = "/{id}")
+    public ResponseEntity<Role> getRoleById(
+            @PathVariable(name = "id") Long id) {
         Optional<Role> role = roleService.getRoleById(id);
         if (role.isPresent()) {
             return ResponseEntity.ok(role.get());
@@ -29,7 +30,7 @@ public class RoleController {
         }
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping
     public Iterable<Role> getAllRoles() {
         return roleService.getAllRoles();
     }
@@ -40,7 +41,8 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteRole(@PathVariable(name = "id") Long id) {
+    public ResponseEntity deleteRole(
+            @PathVariable(name = "id") Long id) {
         roleService.deleteRole(id);
         return ResponseEntity.noContent().build();
     }

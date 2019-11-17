@@ -19,7 +19,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}")
     public ResponseEntity<Category> getCategoryById(
             @PathVariable(name = "id") Long id) {
         Optional<Category> category = categoryService.getCategoryById(id);
@@ -30,7 +30,7 @@ public class CategoryController {
         }
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping
     public Iterable<Category> getAllCategories() {
         return categoryService.getAllCategories();
     }

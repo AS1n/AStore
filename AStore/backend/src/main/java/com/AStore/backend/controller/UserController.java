@@ -20,8 +20,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id) {
+    @RequestMapping(value = "/{id}")
+    public ResponseEntity<User> getUserById(
+            @PathVariable(name = "id") Long id) {
         Optional<User> user = userService.getUserById(id);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());
@@ -30,16 +31,15 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping
     public Iterable<User> getAllUsers(
             @RequestParam(name = "page") Integer pageNumber,
-            @RequestParam(name = "size") Integer size
-    ) {
+            @RequestParam(name = "size") Integer size) {
         Page page = userService.getAllUsers(pageNumber, size);
         return page.getContent();
     }
 
-    @RequestMapping(value = "/total-pages", method = RequestMethod.GET)
+    @RequestMapping(value = "/total-pages")
     public Integer getTotalPages(
             @RequestParam(name = "size") Integer size) {
         Page page = userService.getAllUsers(1, size);
@@ -47,7 +47,8 @@ public class UserController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public User saveUser(@RequestBody User user) {
+    public User saveUser(
+            @RequestBody User user) {
         return userService.saveUser(user);
     }
 
@@ -60,13 +61,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public ResponseEntity deleteUser(@PathVariable(name = "id") Long id) {
+    public ResponseEntity deleteUser(
+            @PathVariable(name = "id") Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(value = "/u/{username}", method = RequestMethod.GET)
-    public ResponseEntity<User> getUserByUsername(@PathVariable(name = "username") String username) {
+    @RequestMapping(value = "/u/{username}")
+    public ResponseEntity<User> getUserByUsername(
+            @PathVariable(name = "username") String username) {
         Optional<User> user = userService.getUserByUsername(username);
         if (user.isPresent()) {
             return ResponseEntity.ok(user.get());

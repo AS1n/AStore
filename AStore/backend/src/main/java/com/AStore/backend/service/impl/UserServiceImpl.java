@@ -28,7 +28,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) {
         boolean temp = repository.findByUsername(user.getUsername()).isPresent();
-        if(user.getId()!=null || !temp)
+        if (user.getId() != null || !temp)
             return repository.save(user);
         else return null;
     }
@@ -45,18 +45,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<User> getAllUsers(Integer page, Integer size) {
-        Pageable pageable = new PageRequest(page-1, size, new Sort(Sort.Direction.ASC, "id"));
+        Pageable pageable = new PageRequest(page - 1, size, new Sort(Sort.Direction.ASC, "id"));
         return repository.findAll(pageable);
     }
 
     @Override
     public User changeRole(User user, Long roleId) {
         boolean temp = repository.findByUsername(user.getUsername()).isPresent();
-        if(user.getId()!=null || !temp) {
+        if (user.getId() != null || !temp) {
             user.setRole(roleService.getRoleById(roleId).get());
             return repository.save(user);
-        }
-        else return null;
+        } else return null;
     }
 
     @Override

@@ -40,8 +40,8 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public Page<Wallet> getPage(Integer page, Integer size, Long user_id) {
-        Pageable pageable = new PageRequest(page-1, size, new Sort(Sort.Direction.ASC, "id"));
-        if(user_id==null)
+        Pageable pageable = new PageRequest(page - 1, size, new Sort(Sort.Direction.ASC, "id"));
+        if (user_id == null)
             return repository.findAll(pageable);
         return repository.findWalletsByUserId(pageable, user_id);
     }
@@ -49,7 +49,7 @@ public class WalletServiceImpl implements WalletService {
     @Override
     public TransBody transaction(TransBody body) {
         increaseWallet(body.getTo(), body.getValue());
-        if(body.getFrom()!=null)
+        if (body.getFrom() != null)
             decreaseWallet(body.getFrom(), body.getValue());
         return body;
     }

@@ -84,3 +84,26 @@ CREATE TABLE `AStore`.`product`
       ON DELETE CASCADE
       ON UPDATE CASCADE
 );
+
+CREATE TABLE `AStore`.`subscription`
+(
+  `id`             INT(11)    NOT NULL AUTO_INCREMENT,
+  `prod_id`        INT(11)    NOT NULL,
+  `user_wallet_id` INT(11)    NOT NULL,
+  `start`          DATE       NOT NULL,
+  `end`            DATE       NOT NULL,
+  `is_active`      TINYINT(4) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `prod_id_sub_fk_idx` (`prod_id` ASC) VISIBLE,
+  INDEX `user_wallet_id_sub_fk_idx` (`user_wallet_id` ASC) VISIBLE,
+  CONSTRAINT `prod_id_sub_fk`
+    FOREIGN KEY (`prod_id`)
+      REFERENCES `AStore`.`product` (`id`)
+      ON DELETE CASCADE
+      ON UPDATE NO ACTION,
+  CONSTRAINT `user_wallet_id_sub_fk`
+    FOREIGN KEY (`user_wallet_id`)
+      REFERENCES `AStore`.`wallet` (`id`)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION
+);

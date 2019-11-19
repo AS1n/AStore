@@ -82,3 +82,8 @@ VALUES (1, 1, 3, 'Sublime Text',
        (15, 3, 3, 'Adobe After Effects',
         'Adobe After Effects is a digital visual effects, motion graphics, and compositing application developed by Adobe Systems and used in the post-production process of film making and television production. Among other things, After Effects can be used for keying, tracking, compositing and animation. It also functions as a very basic non-linear editor, audio editor and media transcode.',
         'path', 79.9);
+
+INSERT INTO AStore.subscription (id, prod_id, user_wallet_id, start, end, is_active)
+VALUES (1, 1, 4, '2019-11-10', '2019-12-22', 1),
+       (2, 7, 4, '2019-12-10', '2019-12-22', 1),
+       (3, 4, 5, '2019-11-09', '2020-02-09', 1);

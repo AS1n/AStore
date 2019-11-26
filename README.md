@@ -7,5 +7,5 @@ AStore - web приложение, которое позволяет польз�
   1.1 [SRS](https://github.com/AS1n/AStore/blob/master/Documentation/SRS/SRS.md) <br>
   1.2 [Диаграммы](https://github.com/AS1n/AStore/blob/master/Documentation/Diagrams/Diagrams.md) <br>
  3. [Код Проекта](https://github.com/AS1n/AStore/tree/master/AStore) <br>
-   3.1 [Backend](https://github.com/AS1n/AStore/tree/master/AStore/backend) <br>
-   3.2 [Frontend](https://github.com/AS1n/AStore/tree/master/AStore/frontend) <br>
+   2.1 [Backend](https://github.com/AS1n/AStore/tree/master/AStore/backend) <br>
+   2.2 [Frontend](https://github.com/AS1n/AStore/tree/master/AStore/frontend) <br>

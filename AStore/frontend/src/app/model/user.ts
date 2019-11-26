@@ -1,5 +1,5 @@
-import { UserInfo } from "./userInfo";
-import { Role } from "./role";
+import {UserInfo} from './userInfo';
+import {Role} from './role';
 
 export class User {
   id: string;
@@ -9,7 +9,7 @@ export class User {
   userInfo: UserInfo;
 
   static cloneBase(user: User): User {
-    let clonedUser: User = new User();
+    const clonedUser: User = new User();
     clonedUser.id = user.id;
     clonedUser.username = user.username;
     clonedUser.password = user.password;

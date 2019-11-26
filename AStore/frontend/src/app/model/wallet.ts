@@ -1,4 +1,4 @@
-import {User} from "./user";
+import {User} from './user';
 
 export class Wallet {
   id: string;
@@ -8,7 +8,7 @@ export class Wallet {
   value: number;
 
   static cloneBase(wallet: Wallet): Wallet {
-    let clonedWallet: Wallet = new Wallet();
+    const clonedWallet: Wallet = new Wallet();
     clonedWallet.id = wallet.id;
     clonedWallet.name = wallet.name;
     clonedWallet.user = User.cloneBase(wallet.user);

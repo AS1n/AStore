@@ -1,5 +1,5 @@
-import {Product} from "./product";
-import {Wallet} from "./wallet";
+import {Product} from './product';
+import {Wallet} from './wallet';
 
 export class Subscription {
   id: string;
@@ -10,7 +10,7 @@ export class Subscription {
   active: boolean;
 
   static cloneBase(subscription: Subscription): Subscription {
-    let clonedSubscription: Subscription = new Subscription();
+    const clonedSubscription: Subscription = new Subscription();
     clonedSubscription.id = subscription.id;
     clonedSubscription.product = subscription.product;
     clonedSubscription.userWallet = subscription.userWallet;

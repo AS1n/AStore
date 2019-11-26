@@ -1,0 +1,104 @@
+<!--<app-navbar></app-navbar>-->
+
+<ngx-spinner
+  bdColor="rgba(51,51,51,0.8)"
+  size="large"
+  color="#5bff5b"
+  type="ball-climbing-dot"
+></ngx-spinner>
+
+<div class="row justify-content-between mt-4">
+  <h3>All wallets</h3>
+  <div>
+    <label class="mr-2">Number of wallets per page:</label>
+    <div class="btn-group">
+      <label (click)="loadWallets()" class="btn btn-primary" [(ngModel)]="size"
+             btnRadio="10" tabindex="0" role="button">10</label>
+      <label (click)="loadWallets()" class="btn btn-primary" [(ngModel)]="size"
+             btnRadio="20" tabindex="0" role="button">20</label>
+      <label (click)="loadWallets()" class="btn btn-primary" [(ngModel)]="size"
+             btnRadio="30" tabindex="0" role="button">30</label>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-lg-5">
+  <div class="row">
+
+    <div class="col">
+
+      <h4>Wallets component:</h4>
+
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Owner</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Value</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let wallet of wallets">
+          <td scope="row">{{wallet.id}}</td>
+          <td>{{wallet.user.username}}</td>
+          <td>{{wallet.name}}</td>
+          <td>{{wallet.description}}</td>
+          <td>{{wallet.value}}$</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <div class="pagination d-flex justify-content-center" *ngIf="totalPages">
+    <ul class="pagination">
+      <li class="page-item" [class.disabled]="currentPage <= 1">
+        <a class="page-link" (click)="loadPrev()">Previous</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage == page" *ngFor="let page of pages">
+        <a class="page-link" (click)="currentPage = page; loadWallets(); ">{{ page }}</a>
+      </li>
+      <li class="page-item" [class.disabled]="currentPage >= totalPages">
+        <a class="page-link" (click)="loadNext()">Next</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Modal -->
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Edit wallet</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="_closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Name</label>
+      <input class="form-control" name="w_name" [(ngModel)]="editableWallet.name" #w_name="ngModel" required/>
+      <div [hidden]="w_name.valid || w_name.untouched" class="alert alert-danger">
+        Pls set name
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Description</label>
+      <textarea class="form-control" name="description" [(ngModel)]="editableWallet.description"
+                #description="ngModel" required></textarea>
+      <div [hidden]="description.valid || description.untouched" class="alert alert-danger">
+        Pls set description
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-warning" (click)="_addWallet()"
+            [disabled]="w_name.invalid || description.invalid">Save
+    </button>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="_closeModal()">Close</button>
+
+  </div>
+</ng-template>

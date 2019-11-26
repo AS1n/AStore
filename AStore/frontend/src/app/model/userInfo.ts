@@ -4,7 +4,7 @@ export class UserInfo {
   dateOfBirth: Date;
 
   static cloneBase(userInfo: UserInfo): UserInfo {
-    let clonedUserInfo: UserInfo = new UserInfo();
+    const clonedUserInfo: UserInfo = new UserInfo();
     clonedUserInfo.id = userInfo.id;
     clonedUserInfo.name = userInfo.name;
     clonedUserInfo.dateOfBirth = userInfo.dateOfBirth;

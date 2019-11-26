@@ -1,5 +1,6 @@
 package com.AStore.backend.controller;
 
+import com.AStore.backend.model.Role;
 import com.AStore.backend.model.User;
 import com.AStore.backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,15 @@ public class UserController {
         return userService.saveUser(user);
     }
 
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    public ResponseEntity<User> registerUser(
+            @RequestBody User user) {
+        if (user != null) {
+            return ResponseEntity.ok(userService.saveUser(user));
+        }
+        return null;
+    }
+
     @RequestMapping(value = "/change-role", method = RequestMethod.POST)
     public User changeRole(
             @RequestBody User user,
@@ -76,6 +86,19 @@ public class UserController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @RequestMapping(value = "/get-current-user", method = RequestMethod.GET)
+    public ResponseEntity<User> getCurrentUser(@RequestHeader(value = "Authorization", required = false) String bearerToken) {
+        if(bearerToken==null){
+            User guest = new User();
+            guest.setRole(new Role(4L));
+            return ResponseEntity.ok(guest);
+        }
+        String login = userService.getUsername(bearerToken);
+        if(userService.getUserByUsername(login).isPresent())
+            return ResponseEntity.ok(userService.getUserByUsername(login).get());
+        return null;
     }
 
 }

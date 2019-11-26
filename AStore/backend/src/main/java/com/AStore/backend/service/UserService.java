@@ -12,5 +12,6 @@ public interface UserService {
     Optional<User> getUserByUsername(String username);
     Page<User> getAllUsers(Integer page, Integer size);
     User changeRole(User user, Long roleId);
+    String getUsername(String bearerToken);
     void deleteUser(Long id);
 }

@@ -68,7 +68,6 @@ CREATE TABLE `AStore`.`product`
   `wallet_id`   INT(11)        NOT NULL,
   `name`        VARCHAR(45)    NOT NULL,
   `description` TEXT           NOT NULL,
-  `img_src`     VARCHAR(45)    NOT NULL,
   `cost`        DECIMAL(11, 5) NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `category_id_product_fk_idx` (`category_id` ASC) VISIBLE,

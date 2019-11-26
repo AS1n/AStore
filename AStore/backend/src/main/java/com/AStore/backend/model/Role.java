@@ -18,6 +18,13 @@ public class Role {
         return name;
     }
 
+    public Role() {
+    }
+
+    public Role(Long id){
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

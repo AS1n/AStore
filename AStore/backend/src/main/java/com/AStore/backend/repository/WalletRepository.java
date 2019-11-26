@@ -9,6 +9,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,10 +21,12 @@ public interface WalletRepository extends
     Page<Wallet> findWalletsByUserId(Pageable pageable, Long id);
 
     @Modifying
+    @Transactional
     @Query("update Wallet w set w.value = w.value + :amount where w.id = :id")
     void increase(@Param("id") Long id, @Param("amount") Double amount);
 
     @Modifying
+    @Transactional
     @Query("update Wallet w set w.value = w.value - :amount where w.id = :id")
     void decrease(@Param("id") Long id, @Param("amount") Double amount);
 }

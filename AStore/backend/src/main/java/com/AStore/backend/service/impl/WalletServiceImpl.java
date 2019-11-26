@@ -48,10 +48,17 @@ public class WalletServiceImpl implements WalletService {
 
     @Override
     public TransBody transaction(TransBody body) {
-        increaseWallet(body.getTo(), body.getValue());
+        if (body.getTo() != null)
+            increaseWallet(body.getTo(), body.getValue());
         if (body.getFrom() != null)
             decreaseWallet(body.getFrom(), body.getValue());
         return body;
+    }
+
+    @Override
+    public void transaction(Long from, Long to, Double value) {
+        increaseWallet(to, value);
+        decreaseWallet(from, value);
     }
 
     @Override

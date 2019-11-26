@@ -13,5 +13,6 @@ public interface WalletService {
     Iterable<Wallet> getAllWallets();
     Page<Wallet> getPage(Integer page, Integer size, Long user_id);
     TransBody transaction(TransBody body);
+    void transaction(Long from, Long to, Double value);
     void deleteWallet(Long id);
 }
